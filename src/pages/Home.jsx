@@ -30,6 +30,15 @@ const Home = () => {
     navigate('/');
   };
 
+  const resolveImageUrl = (url) => {
+    if (!url) return '';
+    if (url.startsWith('http')) return url;
+    const baseUrl = import.meta.env.VITE_API_URL 
+      ? import.meta.env.VITE_API_URL.replace('/api', '') 
+      : 'http://localhost:5001';
+    return `${baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl}${url.startsWith('/') ? url : '/' + url}`;
+  };
+
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
       {/* Public Navbar */}
@@ -141,7 +150,7 @@ const Home = () => {
               >
                 <div className="relative h-64 overflow-hidden">
                   <img 
-                    src={layout.imageUrl} 
+                    src={resolveImageUrl(layout.imageUrl)} 
                     alt={layout.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
