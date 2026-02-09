@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --bg: 255 255 255;
+  --bg2: 249 250 251;
+  --elev: 255 255 255;
+  --text: 17 24 39;
+  --text2: 55 65 81;
+  --muted: 107 114 128;
+  --border: 229 231 235;
+  --primary: 14 165 233;
+  --success: 34 197 94;
+  --warning: 234 179 8;
+  --danger: 239 68 68;
+}
+
+.dark {
+  color-scheme: dark;
+  --bg: 3 7 18;
+  --bg2: 9 9 11;
+  --elev: 17 24 39;
+  --text: 243 244 246;
+  --text2: 209 213 219;
+  --muted: 156 163 175;
+  --border: 31 41 55;
+  --primary: 56 189 248;
+  --success: 74 222 128;
+  --warning: 250 204 21;
+  --danger: 248 113 113;
+}
+
+html {
+  background-color: rgb(var(--bg));
+}
+
+body {
+  min-height: 100vh;
+  background-color: rgb(var(--bg));
+  color: rgb(var(--text));
+}
+
+* {
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
