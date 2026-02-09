@@ -12,8 +12,11 @@ const PlotCanvas = ({ imageUrl, plots, onPlotCreate, isEditing = false }) => {
     if (!url) return '';
     // If it's already a full URL, return as-is
     if (url.startsWith('http')) return url;
-    // Prepend backend base URL for relative paths (e.g., /uploads/...)
-    return `http://localhost:5001${url}`;
+    // Prepend backend base URL from environment or fallback
+    const baseUrl = import.meta.env.VITE_API_URL 
+      ? import.meta.env.VITE_API_URL.replace('/api', '') 
+      : import.meta.env.VITE_BACKEND_URL || 'http://localhost:5001';
+    return `${baseUrl}${url}`;
   };
 
   const fullImageUrl = resolveImageUrl(imageUrl);
