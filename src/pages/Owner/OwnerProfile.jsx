@@ -3,7 +3,7 @@ import { useAuth } from '../../context/AuthContext';
 import { userService } from '../../services/api';
 import { Mail, Phone, Save, User as UserIcon } from 'lucide-react';
 
-const UserProfile = () => {
+const OwnerProfile = () => {
   const { userInfo, setUserInfo } = useAuth();
   const [form, setForm] = useState({ name: '', email: '', mobile: '', password: '' });
   const [loading, setLoading] = useState(true);
@@ -188,4 +188,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default OwnerProfile;

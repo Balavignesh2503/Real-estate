@@ -49,4 +49,9 @@ export const bookingService = {
   updateStatus: (id, data) => api.put(`/bookings/${id}/status`, data),
 };
 
+export const userService = {
+  getMe: () => api.get('/users/me'),
+  updateMe: (data) => api.put('/users/me', data),
+};
+
 export default api;

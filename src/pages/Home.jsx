@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { layoutService } from '../services/api';
-import { Search, MapPin, Grid, ArrowRight, Home as HomeIcon } from 'lucide-react';
+import { Search, MapPin, Grid, ArrowRight, Home as HomeIcon, LayoutDashboard, LogIn, LogOut, UserPlus } from 'lucide-react';
 import ThemeToggle from '../components/ThemeToggle';
 import { useAuth } from '../context/AuthContext';
+import MobileBottomNav from '../components/MobileBottomNav';
 
 const Home = () => {
   const [layouts, setLayouts] = useState([]);
@@ -40,43 +41,48 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950">
+    <div className="min-h-screen bg-white dark:bg-gray-950 pb-24 sm:pb-0">
       {/* Public Navbar */}
-      <nav className="h-20 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between px-6 lg:px-20 sticky top-0 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md z-50">
-        <div className="flex items-center gap-2">
-          <div className="bg-primary-600 p-2 rounded-lg text-white">
-            <HomeIcon size={24} />
+      <nav className="h-14 sm:h-20 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between px-3 sm:px-6 lg:px-20 sticky top-0 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md z-50">
+        <div className="flex items-center gap-2 min-w-0">
+          <div className="bg-primary-600 p-2 rounded-xl text-white shrink-0">
+            <HomeIcon size={20} className="sm:hidden" />
+            <HomeIcon size={24} className="hidden sm:block" />
           </div>
-          <span className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">RealMap</span>
+          <span className="text-base sm:text-2xl font-bold tracking-tight text-gray-900 dark:text-white truncate">RealMap</span>
         </div>
         <div className="hidden md:flex items-center gap-8">
           <Link to="/properties" className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary-600 transition-colors">Properties</Link>
           <Link to="/about" className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary-600 transition-colors">About</Link>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-1.5 sm:gap-4 shrink-0">
           <ThemeToggle />
           {userInfo ? (
             <>
               <button
                 onClick={() => navigate(userInfo.role === 'REAL_ESTATE_OWNER' || userInfo.role === 'ADMIN' ? '/owner' : '/user')}
-                className="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-full font-medium text-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                className="px-2.5 py-2 sm:px-4 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-full font-extrabold text-[11px] sm:text-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex items-center gap-1.5"
               >
-                Dashboard
+                <LayoutDashboard size={16} className="sm:hidden" />
+                <span className="max-[360px]:hidden">Dashboard</span>
               </button>
               <button
                 onClick={handleLogout}
-                className="px-4 py-2 bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-full font-medium text-sm hover:bg-red-200 dark:hover:bg-red-900/30 transition-colors"
+                className="px-2.5 py-2 sm:px-4 bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-full font-extrabold text-[11px] sm:text-sm hover:bg-red-200 dark:hover:bg-red-900/30 transition-colors flex items-center gap-1.5"
               >
-                Logout
+                <LogOut size={16} className="sm:hidden" />
+                <span className="max-[360px]:hidden">Logout</span>
               </button>
             </>
           ) : (
             <>
-              <Link to="/login" className="px-4 py-2 text-gray-600 dark:text-gray-400 rounded-full font-medium text-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                Sign In
+              <Link to="/login" className="px-2.5 py-2 sm:px-4 text-gray-600 dark:text-gray-400 rounded-full font-extrabold text-[11px] sm:text-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center gap-1.5">
+                <LogIn size={16} className="sm:hidden" />
+                <span className="max-[360px]:hidden">Sign In</span>
               </Link>
-              <Link to="/register" className="px-6 py-2.5 bg-primary-600 text-white rounded-full font-bold text-sm hover:bg-primary-700 transition-all shadow-lg shadow-primary-500/20">
-                Sign Up
+              <Link to="/register" className="px-3 py-2.5 sm:px-6 bg-primary-600 text-white rounded-full font-extrabold text-[11px] sm:text-sm hover:bg-primary-700 transition-all shadow-lg shadow-primary-500/20 flex items-center gap-1.5">
+                <UserPlus size={16} className="sm:hidden" />
+                <span className="max-[360px]:hidden">Sign Up</span>
               </Link>
             </>
           )}
@@ -84,17 +90,17 @@ const Home = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-20 pb-32 px-6 lg:px-20 overflow-hidden">
+      <section className="relative pt-7 sm:pt-20 pb-12 sm:pb-32 px-3 sm:px-6 lg:px-20 overflow-hidden">
         <div className="max-w-4xl">
-          <h1 className="text-5xl lg:text-7xl font-extrabold text-gray-900 dark:text-white leading-[1.1] mb-6">
+          <h1 className="text-[32px] sm:text-5xl lg:text-7xl font-extrabold text-gray-900 dark:text-white leading-[1.08] mb-3 sm:mb-6">
             Discover and Book Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-blue-400">Perfect Plot</span> Online.
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-2xl leading-relaxed">
+          <p className="text-sm sm:text-xl text-gray-600 dark:text-gray-400 mb-5 sm:mb-10 max-w-2xl leading-relaxed">
             RealMap is the industry standard for interactive real estate layout mapping. Browse available plots, view exact locations, and book instantly.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 p-2 bg-white dark:bg-gray-900 rounded-3xl shadow-2xl border border-gray-100 dark:border-gray-800 max-w-2xl">
-            <div className="flex-1 flex items-center px-4 py-3">
+          <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-4 p-2 bg-white dark:bg-gray-900 rounded-3xl shadow-2xl border border-gray-100 dark:border-gray-800 max-w-2xl">
+            <div className="flex-1 flex items-center px-3.5 py-2.5">
               <Search className="text-gray-400 mr-3" />
               <input 
                 type="text" 
@@ -102,7 +108,7 @@ const Home = () => {
                 className="w-full bg-transparent border-none focus:ring-0 text-gray-900 dark:text-white"
               />
             </div>
-            <button className="px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-2xl font-bold hover:opacity-90 transition-opacity">
+            <button className="px-6 py-3 sm:px-8 sm:py-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-2xl font-extrabold text-sm hover:opacity-90 transition-opacity">
               Find Property
             </button>
           </div>
@@ -123,13 +129,13 @@ const Home = () => {
       </section>
 
       {/* Featured Layouts */}
-      <section className="bg-gray-50 dark:bg-gray-900/50 py-24 px-6 lg:px-20">
+      <section className="bg-gray-50 dark:bg-gray-900/50 py-16 sm:py-24 px-4 sm:px-6 lg:px-20">
         <div className="flex items-center justify-between mb-12">
           <div>
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Featured Projects</h2>
             <p className="text-gray-500 mt-2">Handpicked premium real estate layouts for you</p>
           </div>
-          <button className="text-primary-600 font-bold flex items-center gap-2 hover:gap-3 transition-all">
+          <button onClick={() => navigate('/properties')} className="text-primary-600 font-bold flex items-center gap-2 hover:gap-3 transition-all">
             View All <ArrowRight size={20} />
           </button>
         </div>
@@ -141,41 +147,41 @@ const Home = () => {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 overflow-x-auto md:overflow-visible -mx-4 px-4 md:mx-0 md:px-0 snap-x snap-mandatory">
             {layouts.map((layout) => (
               <Link 
                 key={layout._id} 
                 to={`/property/${layout._id}`}
-                className="bg-white dark:bg-gray-800 rounded-3xl border border-gray-100 dark:border-gray-700 overflow-hidden group hover:shadow-2xl transition-all duration-300"
+                className="snap-start min-w-[280px] sm:min-w-[340px] md:min-w-0 bg-white dark:bg-gray-800 rounded-3xl border border-gray-100 dark:border-gray-700 overflow-hidden group hover:shadow-2xl transition-all duration-300"
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-52 sm:h-64 overflow-hidden">
                   <img 
                     src={resolveImageUrl(layout.imageUrl)} 
                     alt={layout.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-4 right-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-bold text-primary-600">
+                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md px-3 py-1.5 sm:px-4 rounded-full text-[10px] sm:text-xs font-extrabold text-primary-600">
                     NEW PROJECT
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{layout.title}</h3>
-                  <div className="flex items-center text-gray-500 dark:text-gray-400 text-sm mb-6">
+                <div className="p-5 sm:p-6">
+                  <h3 className="text-lg sm:text-xl font-extrabold text-gray-900 dark:text-white mb-1.5 sm:mb-2 line-clamp-1">{layout.title}</h3>
+                  <div className="flex items-center text-gray-500 dark:text-gray-400 text-xs sm:text-sm mb-5 sm:mb-6">
                     <MapPin size={16} className="mr-1.5 text-primary-500" />
-                    {layout.location}
+                    <span className="line-clamp-1">{layout.location}</span>
                   </div>
-                  <div className="flex items-center justify-between pt-6 border-t border-gray-100 dark:border-gray-700">
+                  <div className="flex items-center justify-between pt-5 sm:pt-6 border-t border-gray-100 dark:border-gray-700">
                     <div className="flex -space-x-2">
                       {[1, 2, 3].map(i => (
-                        <div key={i} className="w-8 h-8 rounded-full border-2 border-white dark:border-gray-800 bg-gray-200 overflow-hidden">
+                        <div key={i} className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-white dark:border-gray-800 bg-gray-200 overflow-hidden">
                            <img src={`https://i.pravatar.cc/100?u=${i}`} alt="user" />
                         </div>
                       ))}
-                      <div className="w-8 h-8 rounded-full border-2 border-white dark:border-gray-800 bg-primary-600 flex items-center justify-center text-[10px] text-white font-bold">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-white dark:border-gray-800 bg-primary-600 flex items-center justify-center text-[10px] text-white font-extrabold">
                         +12
                       </div>
                     </div>
-                    <span className="text-sm font-bold text-gray-400">124 Plots Available</span>
+                    <span className="text-xs sm:text-sm font-extrabold text-gray-400">124 Plots Available</span>
                   </div>
                 </div>
               </Link>
@@ -227,6 +233,8 @@ const Home = () => {
           © 2026 RealMap SaaS. All rights reserved.
         </div>
       </footer>
+
+      <MobileBottomNav />
     </div>
   );
 };

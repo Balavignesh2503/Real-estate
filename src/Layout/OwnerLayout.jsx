@@ -3,7 +3,8 @@ import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
 import { useAuth } from '../context/AuthContext';
-import { LayoutDashboard, Map, Calendar } from 'lucide-react';
+import { LayoutDashboard, Map, Calendar, User, Search } from 'lucide-react';
+import MobileBottomNav from '../components/MobileBottomNav';
 
 const OwnerLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -11,8 +12,10 @@ const OwnerLayout = () => {
 
   const menuItems = [
     { icon: LayoutDashboard, label: 'Overview', path: '/owner' },
+    { icon: Search, label: 'Properties', path: '/properties' },
     { icon: Map, label: 'Layouts', path: '/owner/layouts' },
     { icon: Calendar, label: 'Bookings', path: '/owner/bookings' },
+    { icon: User, label: 'Profile', path: '/owner/profile' },
   ];
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
@@ -24,11 +27,13 @@ const OwnerLayout = () => {
       <div className="flex-1 flex flex-col lg:ml-64">
         <Navbar toggleSidebar={toggleSidebar} />
 
-        <main className="flex-1 p-4 lg:p-8">
+        <main className="flex-1 p-4 lg:p-8 pb-24 sm:pb-8">
           <div className="max-w-7xl mx-auto">
             <Outlet />
           </div>
         </main>
+
+        <MobileBottomNav />
       </div>
     </div>
   );

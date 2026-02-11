@@ -7,6 +7,7 @@ import Login from './Auth/Login';
 import Register from './Auth/Register';
 import Home from './pages/Home';
 import About from './pages/About';
+import Properties from './pages/Properties';
 import PropertyDetails from './pages/PropertyDetails';
 import ProtectedRoute from './components/ProtectedRoute';
 import OwnerLayout from './Layout/OwnerLayout';
@@ -15,6 +16,7 @@ import OwnerOverview from './pages/Owner/OwnerOverview';
 import OwnerLayouts from './pages/Owner/OwnerLayouts';
 import OwnerCreateLayout from './pages/Owner/OwnerCreateLayout';
 import OwnerBookings from './pages/Owner/OwnerBookings';
+import OwnerProfile from './pages/Owner/OwnerProfile';
 import UserOverview from './pages/User/UserOverview';
 import UserBookings from './pages/User/UserBookings';
 import UserProfile from './pages/User/UserProfile';
@@ -24,7 +26,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/properties" element={<Home />} />
+        <Route path="/properties" element={<Properties />} />
         <Route path="/about" element={<About />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/property/:id" element={<PropertyDetails />} />
@@ -45,6 +47,7 @@ function App() {
             <Route path="layouts/new" element={<OwnerCreateLayout />} />
             <Route path="layout/:id/editor" element={<LayoutEditor />} />
             <Route path="bookings" element={<OwnerBookings />} />
+            <Route path="profile" element={<OwnerProfile />} />
           </Route>
         </Route>
 

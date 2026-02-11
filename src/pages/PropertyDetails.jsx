@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import PlotCanvas from '../components/PlotMap/PlotCanvas';
 import { layoutService, plotService, bookingService } from '../services/api';
 import { MapPin, IndianRupee, Ruler, Compass, CheckCircle, Info, XCircle, Mail, Phone, User } from 'lucide-react';
+import MobileBottomNav from '../components/MobileBottomNav';
 
 const PropertyDetails = () => {
   const { id } = useParams();
@@ -81,7 +82,7 @@ const PropertyDetails = () => {
   if (loading) return <div className="flex items-center justify-center h-screen text-gray-500">Loading property...</div>;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 space-y-8">
+    <div className="max-w-7xl mx-auto px-4 py-8 pb-24 sm:pb-8 space-y-8">
       <div className="flex flex-col md:flex-row justify-between gap-6">
         <div className="space-y-2">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{layout?.title}</h1>
@@ -284,6 +285,7 @@ const PropertyDetails = () => {
           </div>
         </div>
       )}
+      <MobileBottomNav />
     </div>
   );
 };

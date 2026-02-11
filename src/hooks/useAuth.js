@@ -26,6 +26,6 @@ export const useAuth = () => {
 
   const logout = () => setUserInfo(null);
 
-  const value = useMemo(() => ({ userInfo, login, register, logout }), [userInfo]);
+  const value = useMemo(() => ({ userInfo, setUserInfo, login, register, logout }), [userInfo]);
   return value;
 };
